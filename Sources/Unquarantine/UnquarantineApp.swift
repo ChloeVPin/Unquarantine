@@ -84,7 +84,7 @@ private struct AboutView: View {
       Text("Unquarantine")
         .font(.system(size: 14, weight: .semibold))
 
-      Text("Version 1.0")
+      Text("Version \(version)")
         .font(.system(size: 11))
         .foregroundStyle(.secondary)
 
@@ -99,6 +99,10 @@ private struct AboutView: View {
         Color(nsColor: .windowBackgroundColor)
       }
     }
+  }
+
+  private var version: String {
+    Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0.1.0"
   }
 
   private var coffeeGold: Color {

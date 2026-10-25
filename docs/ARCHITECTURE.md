@@ -28,6 +28,8 @@ off removes the LaunchAgent and copied helper.
 
 ## Build
 
-The package targets macOS 27. `scripts/build-app.sh` builds both executables,
-compiles the Icon Composer asset, assembles `dist/Unquarantine.app`, and applies
-an ad-hoc signature for local use.
+The package targets macOS 26 and builds with the macOS 27 SDK. The build script
+compiles both executables for arm64 and x86_64, combines each pair into a
+universal binary, compiles the Icon Composer asset, assembles
+`dist/Unquarantine.app`, and applies an ad-hoc signature for local use. macOS 27
+supports Apple silicon; Intel Macs can run the app on macOS 26.

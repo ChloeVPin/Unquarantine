@@ -2,7 +2,7 @@
   <img src="docs/media/icon.png" alt="Unquarantine app icon" width="88" />
   <h1>Unquarantine</h1>
   <p>A quiet, deliberate way to prepare a downloaded Mac app.</p>
-  <p><strong>macOS 27 or later</strong> · SwiftUI · MIT</p>
+  <p><strong>Universal for Apple silicon and Intel</strong> · SwiftUI · macOS 26+ · MIT</p>
 </div>
 
 <p align="center">
@@ -12,6 +12,17 @@
 Unquarantine lets you review an app before removing its macOS quarantine flag.
 It works with `.app` bundles and disk images, and asks for administrator
 approval only when a copy into `/Applications` needs it.
+
+## Download
+
+Choose the installer for your Mac from the [0.1.0 release](https://github.com/ChloeVPin/Unquarantine/releases/tag/v0.1.0):
+
+- **Apple silicon:** macOS 26 or later
+- **Intel:** macOS 26
+
+Open the disk image and drag Unquarantine into Applications. These release
+builds are ad-hoc signed and not notarized, so macOS may ask you to confirm the
+first launch. In Finder, Control-click the app and choose **Open** to confirm.
 
 > Removing quarantine is an explicit exception, not a safety check. Unquarantine
 > does not scan apps or verify their developers.
@@ -30,7 +41,9 @@ ejects the image when the flow ends. It never replaces an app already in
 
 ## Build from source
 
-You’ll need a Mac with Xcode and the macOS 27 SDK.
+You’ll need Xcode with the macOS 27 SDK. The build produces a universal app for
+Apple silicon and Intel. Apple silicon Macs can run it on macOS 26 or later;
+Intel Macs can run it on macOS 26, the latest Intel-compatible release.
 
 ```sh
 ./scripts/build-app.sh

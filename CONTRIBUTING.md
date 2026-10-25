@@ -10,7 +10,9 @@ controls and services.
 - For a visual change, include a short screen capture when it adds useful
   context.
 - Keep new dependencies and background work to a minimum.
-- Build with `./scripts/build-app.sh` on macOS 27 with the matching SDK.
+- Build with `./scripts/build-app.sh` using Xcode with the macOS 27 SDK. The
+  resulting universal app supports macOS 26 and later on Apple silicon, and
+  macOS 26 on Intel.
 
 Please do not include app bundles, disk images, private data, or local build
 products in a change. For a security issue, follow [SECURITY.md](SECURITY.md)

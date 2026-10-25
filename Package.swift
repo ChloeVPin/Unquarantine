@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "Unquarantine",
     platforms: [
-        .macOS(.v27)
+        .macOS(.v26)
     ],
     targets: [
         .executableTarget(
