@@ -16,6 +16,10 @@ application icons, and launching apps.
 - `InstallService` copies an app into `/Applications` when needed. macOS
   performs that privileged copy after the user approves its administrator
   prompt.
+- `UpdateService` checks GitHub Releases, selects the installer for the current
+  architecture, verifies the published SHA-256 digest, and replaces the app
+  only after the user chooses to install. It uses the existing disk-image
+  service to mount and eject its verified update installer.
 
 ## Background monitoring
 

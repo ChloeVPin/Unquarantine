@@ -12,6 +12,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 struct UnquarantineApp: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
   @Environment(\.openWindow) private var openWindow
+  @Environment(\.openSettings) private var openSettings
   @State private var model = AppModel()
 
   var body: some Scene {
@@ -27,6 +28,14 @@ struct UnquarantineApp: App {
         Button("About Unquarantine") {
           openWindow(id: "about")
         }
+      }
+
+      CommandGroup(after: .appInfo) {
+        Button("Check for Updates…") {
+          openSettings()
+          Task { await model.updater.checkNow() }
+        }
+        .disabled(model.updater.isBusy)
       }
 
       CommandGroup(replacing: .newItem) {
@@ -49,7 +58,7 @@ struct UnquarantineApp: App {
         .environment(model)
     }
     .windowResizability(.contentSize)
-    .defaultSize(width: 540, height: 496)
+    .defaultSize(width: 540, height: 620)
   }
 }
 

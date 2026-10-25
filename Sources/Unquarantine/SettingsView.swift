@@ -6,6 +6,7 @@ struct SettingsView: View {
 
   var body: some View {
     @Bindable var model = model
+    @Bindable var updater = model.updater
 
     VStack(alignment: .leading, spacing: 18) {
       SettingsSection(title: "After preparing apps") {
@@ -64,12 +65,56 @@ struct SettingsView: View {
         }
       }
 
+      SettingsSection(title: "Updates") {
+        SettingsPane(usesLiquidGlass: model.liquidGlassPanes) {
+          VStack(spacing: 0) {
+            PreferenceRow(
+              title: "Check for updates automatically",
+              detail: "Check GitHub daily while Unquarantine is open. You choose when to install.",
+              isOn: $updater.automaticallyChecksForUpdates
+            )
+
+            sectionDivider
+
+            HStack(spacing: 10) {
+              Text(updater.statusDescription)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .lineLimit(2)
+
+              Spacer(minLength: 4)
+
+              if updater.isBusy {
+                ProgressView()
+                  .controlSize(.small)
+              } else if updater.availableUpdate != nil {
+                Button("Install & Relaunch") {
+                  Task { await updater.installAvailableUpdate() }
+                }
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
+                .controlSize(.small)
+              } else {
+                Button("Check Now") {
+                  Task { await updater.checkNow() }
+                }
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+                .controlSize(.small)
+              }
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+          }
+        }
+      }
+
       Spacer(minLength: 0)
     }
     .padding(.horizontal, 26)
     .padding(.top, 22)
     .padding(.bottom, 18)
-    .frame(width: 540, height: 496, alignment: .topLeading)
+    .frame(width: 540, height: 620, alignment: .topLeading)
     .containerBackground(for: .window) {
       if model.liquidGlassPanes {
         Rectangle().fill(.regularMaterial)
@@ -106,7 +151,7 @@ private struct SettingsPane<Content: View>: View {
   let usesLiquidGlass: Bool
   @ViewBuilder let content: Content
 
-  private let shape = ConcentricRectangle()
+  private let shape = RoundedRectangle(cornerRadius: 20, style: .continuous)
 
   private var paddedContent: some View {
     content
@@ -115,17 +160,18 @@ private struct SettingsPane<Content: View>: View {
   }
 
   var body: some View {
-    paddedContent
-      .background {
-        if usesLiquidGlass {
-          shape.fill(.regularMaterial)
-        } else {
+    if usesLiquidGlass {
+      paddedContent
+        .glassEffect(.regular, in: shape)
+    } else {
+      paddedContent
+        .background {
           shape.fill(Color(nsColor: .controlBackgroundColor))
         }
-      }
-      .overlay {
-        shape.stroke(Color.primary.opacity(usesLiquidGlass ? 0.08 : 0.06), lineWidth: 1)
-      }
+        .overlay {
+          shape.stroke(Color.primary.opacity(0.06), lineWidth: 1)
+        }
+    }
   }
 }
 

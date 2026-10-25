@@ -20,11 +20,8 @@ private struct AdaptivePaneBackground: View {
 
   var body: some View {
     if model.liquidGlassPanes {
-      shape
-        .fill(.regularMaterial)
-        .overlay {
-          shape.strokeBorder(borderColor.opacity(borderOpacity), lineWidth: 1)
-        }
+      shape.fill(.clear)
+        .glassEffect(.regular, in: shape)
     } else {
       shape
         .fill(fallbackFill)
@@ -63,6 +60,7 @@ struct ContentView: View {
     .frame(width: contentWidth)
     .animation(.snappy(duration: 0.25), value: model.phase)
     .animation(.snappy(duration: 0.15), value: model.isDropTargeted)
+    .animation(.snappy(duration: 0.2), value: model.updater.state)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .containerBackground(for: .window) {
       if model.liquidGlassPanes {
@@ -71,7 +69,101 @@ struct ContentView: View {
         Color(nsColor: .windowBackgroundColor)
       }
     }
+    .overlay(alignment: .topTrailing) {
+      if model.phase == .idle, model.updater.showsUpdateBanner,
+        let update = model.updater.availableUpdate
+      {
+        UpdatePill(update: update)
+          .padding(.top, 5)
+          .padding(.trailing, 14)
+          .transition(.move(edge: .top).combined(with: .opacity))
+      }
+    }
     .ignoresSafeArea()
+  }
+}
+
+private struct UpdatePill: View {
+  @Environment(AppModel.self) private var model
+
+  let update: AvailableUpdate
+
+  var body: some View {
+    Group {
+      switch model.updater.state {
+      case .available:
+        actionPill(title: "Update", symbol: "arrow.down.app")
+          .help("Install version \(update.version) and relaunch")
+          .accessibilityLabel("Install update version \(update.version) and relaunch")
+      case .failed:
+        actionPill(title: "Retry", symbol: "arrow.clockwise")
+          .help(model.updater.statusDescription)
+          .accessibilityLabel("Try the update again")
+      case .waitingForApproval:
+        statusPill(title: "Approve", symbol: nil)
+          .help(model.updater.statusDescription)
+          .accessibilityLabel(model.updater.statusDescription)
+      case .installing:
+        statusPill(title: "Restarting", symbol: nil)
+          .help(model.updater.statusDescription)
+          .accessibilityLabel(model.updater.statusDescription)
+      case .downloading, .verifying, .preparing:
+        statusPill(title: "Updating", symbol: nil, showsProgress: true)
+          .help(model.updater.statusDescription)
+          .accessibilityLabel(model.updater.statusDescription)
+      case .idle, .checking, .current, .checkFailed:
+        EmptyView()
+      }
+    }
+  }
+
+  private func actionPill(title: String, symbol: String) -> some View {
+    Button {
+      Task { await model.updater.installAvailableUpdate() }
+    } label: {
+      pillLabel(title: title, symbol: symbol)
+    }
+    .buttonStyle(.plain)
+    .modifier(UpdatePillSurface(usesLiquidGlass: model.liquidGlassPanes))
+  }
+
+  private func statusPill(title: String, symbol: String?, showsProgress: Bool = false) -> some View {
+    pillLabel(title: title, symbol: symbol, showsProgress: showsProgress)
+      .modifier(UpdatePillSurface(usesLiquidGlass: model.liquidGlassPanes))
+  }
+
+  private func pillLabel(title: String, symbol: String?, showsProgress: Bool = false) -> some View {
+    HStack(spacing: 5) {
+      if showsProgress {
+        ProgressView().controlSize(.mini)
+      } else if let symbol {
+        Image(systemName: symbol)
+          .font(.system(size: 11, weight: .semibold))
+      }
+      Text(title)
+        .font(.system(size: 11, weight: .semibold))
+    }
+    .padding(.horizontal, 9)
+    .padding(.vertical, 4)
+    .fixedSize()
+  }
+}
+
+private struct UpdatePillSurface: ViewModifier {
+  let usesLiquidGlass: Bool
+
+  func body(content: Content) -> some View {
+    if usesLiquidGlass {
+      content.glassEffect(.regular.interactive(), in: Capsule())
+    } else {
+      content
+        .background {
+          Capsule().fill(Color(nsColor: .controlBackgroundColor))
+        }
+        .overlay {
+          Capsule().strokeBorder(Color.primary.opacity(0.08), lineWidth: 1)
+        }
+    }
   }
 }
 

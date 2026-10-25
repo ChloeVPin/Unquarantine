@@ -56,6 +56,7 @@ final class AppModel {
 
   var phase: AppPhase = .idle
   var isDropTargeted: Bool = false
+  var updater = UpdateService()
   var monitor = ApplicationsDirectoryMonitor()
   private var prepared: [Candidate: URL] = [:]
   // Disk image app URLs only stay valid while their image remains mounted.
@@ -85,6 +86,7 @@ final class AppModel {
       if !fresh.isEmpty, let model = self {
         model.phase = .confirming(fresh)
       }
+      self?.updater.startAutomaticChecks()
     }
     // Refresh the installed helper so it stays in sync with app updates.
     if autoWatch {

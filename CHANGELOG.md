@@ -3,6 +3,12 @@
 Changes worth calling out are recorded here. Versions follow the version shown
 in the app.
 
+## Unreleased
+
+- Add quiet daily update checks with a manual install and relaunch flow.
+- Verify architecture-specific GitHub release downloads before replacing the
+  current app.
+
 ## 0.1.0
 
 - Initial version of Unquarantine.

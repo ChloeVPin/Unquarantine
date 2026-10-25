@@ -34,6 +34,15 @@ you finish or cancel the flow.
 - **Liquid Glass appearance** adds a translucent window background and glass
   to interactive surfaces. macOS adapts these surfaces to your transparency
   and contrast settings.
+- **Check for updates automatically** checks the latest public GitHub release
+  once a day while Unquarantine is open. Checks do not install anything. When
+  an update is available, a small pill appears at the top right of the main
+  window. Choose it to install and relaunch. The download is checked against
+  GitHub’s published SHA-256 digest, and macOS requests administrator approval
+  only if replacing the app requires it.
+
+Use **Check for Updates…** from the app menu to check immediately. Turn off
+automatic checks in Settings to stop the daily checks.
 
 ## If preparation cannot continue
 

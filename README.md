@@ -60,6 +60,22 @@ opens Unquarantine when it finds one. For relaunch while the app is closed,
 keep Unquarantine installed in `/Applications`. Turn the setting off to remove
 the agent.
 
+## Updates
+
+Unquarantine checks the latest public GitHub release once a day while it is
+open. It never downloads or installs an update without your choice. When a
+newer version is available, a compact pill appears at the top right of the main
+window; choose **Update** to install and relaunch. Settings also has a manual
+check and install control. The updater downloads the installer for your Mac,
+checks its size and SHA-256 digest from GitHub Releases, then verifies the app
+bundle before replacing the current copy. macOS asks for administrator approval
+only when the app’s location requires it. You can turn automatic checks off in
+Settings.
+
+Updates use the same ad-hoc signed, non-notarized builds as the initial release.
+GitHub’s release asset digest detects download corruption; it is not a separate
+developer signature.
+
 ## Project notes
 
 - [Usage and settings](docs/USAGE.md)
