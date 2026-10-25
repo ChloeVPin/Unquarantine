@@ -6,12 +6,8 @@
 </div>
 
 <p align="center">
-  <a href="docs/media/dropzone.mp4">
-    <img src="docs/media/dropzone.gif" alt="Unquarantine’s drop window responding to hover" width="640" />
-  </a>
+  <img src="docs/media/dropzone.png" alt="Unquarantine’s drop window" width="640" />
 </p>
-
-<p align="center"><a href="docs/media/dropzone.mp4">Watch the short video</a></p>
 
 Unquarantine lets you review an app before removing its macOS quarantine flag.
 It works with `.app` bundles and disk images, and asks for administrator
