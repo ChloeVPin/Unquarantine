@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="title desc">
+  <title id="title">Screwdriver</title>
+  <desc id="desc">Original flat vector illustration of a blue-handled screwdriver with a satin-silver flathead blade, inspired by the refined simplicity of macOS icon design.</desc>
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0" objectBoundingBox="true">
+      <stop offset="0" stop-color="#7C91B3"/>
+      <stop offset="0.17" stop-color="#BAC7DC"/>
+      <stop offset="0.49" stop-color="#E7EDF7"/>
+      <stop offset="0.75" stop-color="#B4C1D6"/>
+      <stop offset="1" stop-color="#6C83AA"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#F1F5FC"/>
+      <stop offset="0.60" stop-color="#D2DBEB"/>
+      <stop offset="1" stop-color="#A5B4CF"/>
+    </linearGradient>
+    <linearGradient id="handle" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4EADFF"/>
+      <stop offset="0.33" stop-color="#177EF5"/>
+      <stop offset="0.73" stop-color="#145ED8"/>
+      <stop offset="1" stop-color="#123C9F"/>
+    </linearGradient>
+    <linearGradient id="front" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#268FF5"/>
+      <stop offset="0.5" stop-color="#4FB6FF"/>
+      <stop offset="1" stop-color="#1471E3"/>
+    </linearGradient>
+    <linearGradient id="leftGrip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1746AB"/>
+      <stop offset="1" stop-color="#1264D7"/>
+    </linearGradient>
+    <linearGradient id="rightGrip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0752C4"/>
+      <stop offset="1" stop-color="#0B398D"/>
+    </linearGradient>
+    <linearGradient id="collar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#53B8FF"/>
+      <stop offset="0.5" stop-color="#188AF8"/>
+      <stop offset="1" stop-color="#1264DB"/>
+    </linearGradient>
+    <linearGradient id="lowerShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#153EB0" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0D348F" stop-opacity="0.65"/>
+    </linearGradient>
+  </defs>
+
+  <!-- One-piece forged steel silhouette, including the flattened driver tip. -->
+  <path fill="url(#metal)" d="M477 83 Q478 75 486 75 H538 Q546 75 547 83 L562 197 Q565 218 550 238 Q537 254 537 276 V451 Q537 471 554 482 L572 495 H452 L470 482 Q487 471 487 451 V276 Q487 254 474 238 Q459 218 462 197 Z"/>
+  <!-- Satin planar face of the flat blade. -->
+  <path fill="url(#blade)" d="M489 78 H535 Q540 78 541 85 L552 195 Q553 209 545 221 L530 242 Q521 253 512 253 Q503 253 494 242 L479 221 Q471 209 472 195 L483 85 Q484 78 489 78 Z"/>
+  <!-- Minimal edge facets create depth without outlines or raster effects. -->
+  <path fill="#6E84A9" opacity=".55" d="M462 197 Q459 218 474 238 Q487 254 487 276 V451 Q487 471 470 482 L452 495 H478 Q502 479 502 451 V274 Q502 250 486 232 Q470 211 472 194 Z"/>
+  <path fill="#8296B6" opacity=".48" d="M562 197 Q565 218 550 238 Q537 254 537 276 V451 Q537 471 554 482 L572 495 H548 Q522 479 522 451 V274 Q522 250 539 232 Q555 211 552 194 Z"/>
+  <path fill="#F8FAFF" opacity=".75" d="M507 253 Q512 256 517 253 V482 H507 Z"/>
+
+  <!-- Sculpted polymer handle: entirely editable SVG paths. -->
+  <path fill="url(#handle)" d="M434 486 C409 486 393 499 389 520 C385 541 395 558 411 577 C439 610 445 649 431 692 C416 734 393 765 386 814 C380 856 390 904 414 925 C435 946 471 952 512 952 C553 952 589 946 610 925 C634 904 644 856 638 814 C631 765 608 734 593 692 C579 649 585 610 613 577 C629 558 639 541 635 520 C631 499 615 486 590 486 Z"/>
+
+  <!-- Inset grip pads: restrained, distinctive tapered shapes. -->
+  <path fill="url(#leftGrip)" d="M439 663 C452 676 453 690 452 711 C450 753 428 800 426 854 C425 877 428 897 438 916 C412 900 399 867 401 828 C403 780 426 735 431 707 C435 686 438 671 439 663 Z"/>
+  <path fill="url(#rightGrip)" d="M585 663 C572 676 571 690 572 711 C574 753 596 800 598 854 C599 877 596 897 586 916 C612 900 625 867 623 828 C621 780 598 735 593 707 C589 686 586 671 585 663 Z"/>
+
+  <!-- Slim central facet, like an inset enamel surface. -->
+  <path fill="url(#front)" opacity=".75" d="M473 579 C492 586 501 590 512 590 C523 590 532 586 551 579 C538 612 535 636 540 676 C546 733 559 811 556 874 C555 900 538 921 512 927 C486 921 469 900 468 874 C465 811 478 733 484 676 C489 636 486 612 473 579 Z"/>
+  <path fill="url(#lowerShade)" d="M395 817 C390 864 397 900 414 925 C435 946 471 952 512 952 C553 952 589 946 610 925 C627 900 634 864 629 817 C620 879 577 926 512 926 C447 926 404 879 395 817 Z"/>
+
+  <!-- Rounded collar with an uninterrupted crisp upper edge. -->
+  <path fill="url(#collar)" d="M434 486 H590 C615 486 631 499 635 520 C638 539 629 557 614 574 C602 567 589 563 570 562 H454 C435 563 422 567 410 574 C395 557 386 539 389 520 C393 499 409 486 434 486 Z"/>
+  <path fill="#A7E4FF" opacity=".25" d="M431 489 H593 Q609 489 620 500 H404 Q415 489 431 489 Z"/>
+</svg>

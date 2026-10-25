@@ -1,0 +1,57 @@
+name: Bug report
+description: Report something that is not working as expected.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Please do not include private apps, disk images, or personal file paths.
+  - type: input
+    id: app-version
+    attributes:
+      label: Unquarantine version
+      placeholder: "1.0"
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      placeholder: "27.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: file-type
+    attributes:
+      label: File type
+      options:
+        - App bundle (.app)
+        - Disk image (.dmg)
+        - ISO image (.iso)
+        - Not file-specific
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: A short description is enough.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open Unquarantine.
+        2. Choose an app or disk image.
+        3. Describe what happened next.
+    validations:
+      required: true

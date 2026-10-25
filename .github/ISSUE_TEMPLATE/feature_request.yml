@@ -1,0 +1,27 @@
+name: Feature request
+description: Suggest a focused improvement to Unquarantine.
+title: "[Request]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would you like to do?
+      description: Describe the task or friction you have today.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would make it better?
+      description: Describe the change you have in mind.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else?
+      description: Add a screenshot or short capture if it helps explain the idea.
+    validations:
+      required: false
